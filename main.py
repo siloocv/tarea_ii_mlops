@@ -33,3 +33,9 @@ async def user_registration(data: dict):
         "status_code": 201
     }
 
+@api.get("/users/{username}", tags=["Users"])
+async def get_user(username: str):
+    for user in users_db:
+        if user["username"] == username:
+            return user
+    return {"error": "Usuario no encontrado"}
